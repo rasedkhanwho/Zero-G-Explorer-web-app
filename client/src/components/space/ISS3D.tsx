@@ -118,7 +118,7 @@ export function ISS3D({ dockingPhase, distance }: ISS3DProps) {
       {/* Radiators */}
       <mesh position={[0, 0, -6]} rotation={[0, 0, Math.PI / 4]}>
         <boxGeometry args={[3, 0.1, 1]} />
-        <meshLambertMaterial color="#silver" />
+        <meshLambertMaterial color="#c0c0c0" />
       </mesh>
     </group>
   );

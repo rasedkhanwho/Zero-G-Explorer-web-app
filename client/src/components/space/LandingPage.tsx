@@ -3,8 +3,8 @@ import { Suspense, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useSpaceEducation } from "@/lib/stores/useSpaceEducation";
-import { Earth3D } from "./Earth3D";
-import { Stars, Text, OrbitControls } from "@react-three/drei";
+import { CupolaEarth3D } from "./CupolaEarth3D";
+import { Stars, OrbitControls } from "@react-three/drei";
 
 export function LandingPage() {
   const { setUserChoice } = useSpaceEducation();
@@ -34,7 +34,7 @@ export function LandingPage() {
           <pointLight position={[10, 10, 10]} intensity={1} />
           
           <Suspense fallback={null}>
-            <Earth3D />
+            <CupolaEarth3D />
           </Suspense>
           
           <OrbitControls 

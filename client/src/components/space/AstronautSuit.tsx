@@ -46,7 +46,7 @@ export function AstronautSuit({ buoyancyStatus }: AstronautSuitProps) {
   };
 
   return (
-    <group ref={groupRef}>
+    <group ref={groupRef} position={[0, 0, 3]} scale={1.2}>
       {/* Main body */}
       <mesh position={[0, 0, 0]}>
         <boxGeometry args={[1, 1.5, 0.5]} />
