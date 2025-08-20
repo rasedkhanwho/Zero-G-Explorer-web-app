@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useSpaceEducation } from "@/lib/stores/useSpaceEducation";
 import { Earth3D } from "./Earth3D";
+import EducatorResources from "../education/EducatorResources";
 import { Suspense } from "react";
 import { OrbitControls, Stars, Text } from "@react-three/drei";
 
@@ -12,6 +13,7 @@ export function CupolaExperience() {
   const { reset, userChoice } = useSpaceEducation();
   const [viewMode, setViewMode] = useState<'earth' | 'stars' | 'sunrise'>('earth');
   const [showInfo, setShowInfo] = useState(true);
+  const [showEducatorResources, setShowEducatorResources] = useState(false);
   const [currentLocation, setCurrentLocation] = useState({
     region: "Pacific Ocean",
     country: "International Waters",
@@ -47,6 +49,10 @@ export function CupolaExperience() {
 
     return () => clearInterval(interval);
   }, []);
+
+  if (showEducatorResources) {
+    return <EducatorResources onClose={() => setShowEducatorResources(false)} />;
+  }
 
   return (
     <div className="relative w-full h-full bg-black">
@@ -227,6 +233,12 @@ export function CupolaExperience() {
                   className="w-full bg-blue-600 hover:bg-blue-500 text-white"
                 >
                   🛰️ Track ISS Live Position
+                </Button>
+                <Button 
+                  onClick={() => setShowEducatorResources(true)}
+                  className="w-full bg-red-600 hover:bg-red-500 text-white"
+                >
+                  📚 For Educators
                 </Button>
                 <Button 
                   onClick={reset}
