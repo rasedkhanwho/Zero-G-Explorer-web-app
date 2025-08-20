@@ -173,13 +173,21 @@ export function CupolaExperience() {
                 </ul>
               </div>
 
-              <Button 
-                onClick={reset}
-                variant="outline"
-                className="w-full text-white border-gray-500 hover:bg-gray-800"
-              >
-                🔄 Start New Mission
-              </Button>
+              <div className="space-y-2">
+                <Button 
+                  onClick={() => window.open('https://isstracker.pl/en', '_blank')}
+                  className="w-full bg-blue-600 hover:bg-blue-500 text-white"
+                >
+                  🛰️ Track ISS Live Position
+                </Button>
+                <Button 
+                  onClick={reset}
+                  variant="outline"
+                  className="w-full text-white border-gray-500 hover:bg-gray-800"
+                >
+                  🔄 Start New Mission
+                </Button>
+              </div>
             </CardContent>
           </Card>
         </div>
