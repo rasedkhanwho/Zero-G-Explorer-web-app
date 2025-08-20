@@ -83,7 +83,52 @@ export function CupolaExperience() {
         </div>
       )}
       
-      {/* Authentic ISS Cupola View - Real photo from space */}
+      {/* Dynamic 3D Earth overlaid on authentic Cupola background */}
+      <div className="absolute inset-0">
+        <Canvas camera={{ position: [0, 0, 8], fov: 60 }}>
+          {/* Transparent background to show the real Cupola image behind */}
+          <color attach="background" args={["transparent"]} />
+          
+          {viewMode === 'stars' && (
+            <Stars radius={300} depth={60} count={20000} factor={4} saturation={0} />
+          )}
+          
+          <ambientLight intensity={viewMode === 'sunrise' ? 0.8 : 0.3} />
+          <pointLight 
+            position={viewMode === 'sunrise' ? [10, 0, 5] : [5, 5, 5]} 
+            intensity={viewMode === 'sunrise' ? 2 : 1}
+            color={viewMode === 'sunrise' ? "#ffaa44" : "#ffffff"}
+          />
+          
+          <Suspense fallback={null}>
+            {/* Animated rotating Earth - positioned to match the main Cupola window */}
+            <group position={[0, -1, 0]} scale={[3, 3, 3]}>
+              <Earth3D />
+            </group>
+            
+            {viewMode === 'sunrise' && (
+              <Text
+                position={[0, 3, 0]}
+                fontSize={0.5}
+                color="#ffaa44"
+                anchorX="center"
+                anchorY="middle"
+              >
+                Orbital Sunrise
+              </Text>
+            )}
+          </Suspense>
+          
+          <OrbitControls 
+            enableZoom={true} 
+            enablePan={false} 
+            minDistance={3}
+            maxDistance={15}
+            autoRotate={true} 
+            autoRotateSpeed={1.5}
+          />
+        </Canvas>
+      </div>
 
       {/* Cupola Frame Overlay */}
       <div className="absolute inset-0 pointer-events-none">
