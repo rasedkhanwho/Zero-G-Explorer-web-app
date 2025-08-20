@@ -6,11 +6,12 @@ import { LandingPage } from "./components/space/LandingPage";
 import { NBLTraining } from "./components/space/NBLTraining";
 import { RocketLaunch } from "./components/space/RocketLaunch";
 import { ISSArrival } from "./components/space/ISSArrival";
+import ISSInterior from "./components/space/ISSInterior";
 import { CupolaExperience } from "./components/space/CupolaExperience";
 import "@fontsource/inter";
 
 function App() {
-  const { currentPhase } = useSpaceEducation();
+  const { currentPhase, completeInterior } = useSpaceEducation();
   const [showCanvas, setShowCanvas] = useState(false);
 
   // Show the canvas once everything is loaded
@@ -55,6 +56,7 @@ function App() {
       {currentPhase === 'nbl_training' && <NBLTraining />}
       {currentPhase === 'rocket_launch' && <RocketLaunch />}
       {currentPhase === 'iss_arrival' && <ISSArrival />}
+      {currentPhase === 'iss_interior' && <ISSInterior onComplete={completeInterior} />}
       {currentPhase === 'cupola_experience' && <CupolaExperience />}
     </div>
   );

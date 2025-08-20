@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,6 +12,41 @@ export function CupolaExperience() {
   const { reset, userChoice } = useSpaceEducation();
   const [viewMode, setViewMode] = useState<'earth' | 'stars' | 'sunrise'>('earth');
   const [showInfo, setShowInfo] = useState(true);
+  const [currentLocation, setCurrentLocation] = useState({
+    region: "Pacific Ocean",
+    country: "International Waters",
+    nextLocation: "New Zealand"
+  });
+
+  // Simulate ISS orbital positions
+  useEffect(() => {
+    const locations = [
+      { region: "Pacific Ocean", country: "International Waters", nextLocation: "New Zealand" },
+      { region: "New Zealand", country: "New Zealand", nextLocation: "Australia" },
+      { region: "Australia", country: "Australia", nextLocation: "Indonesia" },
+      { region: "Southeast Asia", country: "Indonesia", nextLocation: "India" },
+      { region: "Indian Ocean", country: "International Waters", nextLocation: "India" },
+      { region: "India", country: "India", nextLocation: "Middle East" },
+      { region: "Arabian Peninsula", country: "Saudi Arabia", nextLocation: "Europe" },
+      { region: "Mediterranean Sea", country: "International Waters", nextLocation: "Europe" },
+      { region: "Europe", country: "France", nextLocation: "Atlantic Ocean" },
+      { region: "Atlantic Ocean", country: "International Waters", nextLocation: "North America" },
+      { region: "North America", country: "United States", nextLocation: "Pacific Ocean" },
+      { region: "Pacific Ocean", country: "International Waters", nextLocation: "Asia" }
+    ];
+
+    const interval = setInterval(() => {
+      setCurrentLocation(prevLocation => {
+        const currentIndex = locations.findIndex(loc => 
+          loc.region === prevLocation.region && loc.country === prevLocation.country
+        );
+        const nextIndex = (currentIndex + 1) % locations.length;
+        return locations[nextIndex];
+      });
+    }, 8000); // Change location every 8 seconds (simulating ISS orbit)
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="relative w-full h-full bg-black">
@@ -134,11 +169,24 @@ export function CupolaExperience() {
             </CardHeader>
             <CardContent className="space-y-4 text-sm">
               <div className="space-y-2 text-gray-200">
+                <div className="p-3 bg-blue-900/30 rounded border border-blue-500 mb-3">
+                  <p className="text-blue-300 font-semibold mb-2">Current Position:</p>
+                  <p className="text-sm">
+                    <strong>Passing over:</strong> {currentLocation.region}
+                  </p>
+                  <p className="text-sm">
+                    <strong>Country:</strong> {currentLocation.country}
+                  </p>
+                  <p className="text-xs text-gray-400 mt-1">
+                    Next: {currentLocation.nextLocation}
+                  </p>
+                </div>
+                
                 <p>
-                  <strong>Altitude:</strong> 408 km above Earth
+                  <strong>Altitude:</strong> 420 km above Earth
                 </p>
                 <p>
-                  <strong>Orbital Speed:</strong> 27,600 km/h
+                  <strong>Velocity:</strong> 27,600 km/h
                 </p>
                 <p>
                   <strong>Orbital Period:</strong> 92 minutes

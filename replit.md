@@ -1,8 +1,32 @@
 # Overview
 
-This is a space education platform that provides an immersive 3D learning experience about astronaut training and space missions. The application combines interactive 3D graphics with educational content to guide users through different phases of space exploration, from neutral buoyancy lab (NBL) training to docking with the International Space Station (ISS) and experiencing life in space through the Cupola observatory.
+This is a comprehensive space education platform that provides an immersive 3D learning experience about astronaut training and space missions. The application combines interactive 3D graphics with educational content to guide users through the complete astronaut journey, from NASA's Neutral Buoyancy Lab (NBL) training through ISS arrival and interior operations.
 
-The platform allows users to choose between being an astronaut (going through training phases) or an observer (directly experiencing space), with each path providing different educational content and interactive elements.
+## Key Features
+
+### Complete Astronaut Training Sequence
+- **NBL Training Module**: Full protocol sequence with authentic NASA procedures
+  - Step 1: Introduction with NASA NBL footage slides and real training images
+  - Step 2: EMU suit assembly mini-game with drag-and-drop components
+  - Step 3: Pre-breathe protocol with nitrogen elimination animation and timer
+  - Step 4: NBL pool simulation with ISS maintenance tasks and virtual safety divers
+  - Mission debrief with performance metrics and completion scores
+
+### ISS Interior Experience
+- **First-person airlock entry** into Destiny Laboratory with welcome message
+- **Three onboarding mini-games** that must be completed to unlock Cupola access:
+  - Inspection & Repair: Fix loose panel causing red alert light
+  - Plant Growth: Monitor plant growth in the plant module
+  - Communications Check: Send status report to Mission Control
+- **3D interactive ISS interior** with clickable task modules and progress tracking
+
+### Enhanced Cupola Observatory
+- **Dynamic Earth location tracking**: Real-time simulation of ISS orbital positions
+- **Live ISS tracking integration**: Button linking to https://isstracker.pl/en for authentic position data
+- **Multiple viewing modes**: Earth view, orbital sunrise, and deep space perspectives
+- **Educational information panels** with authentic ISS facts and orbital data
+
+The platform allows users to choose between being an astronaut (going through full training sequence) or an observer (directly experiencing space), with gamified progression ensuring educational engagement.
 
 # User Preferences
 

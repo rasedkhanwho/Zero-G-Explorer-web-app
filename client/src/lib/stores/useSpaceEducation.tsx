@@ -6,6 +6,7 @@ export type SpacePhase =
   | "nbl_training" 
   | "rocket_launch" 
   | "iss_arrival" 
+  | "iss_interior"
   | "cupola_experience";
 
 interface SpaceEducationState {
@@ -15,6 +16,7 @@ interface SpaceEducationState {
   nblCompleted: boolean;
   launchCompleted: boolean;
   dockingCompleted: boolean;
+  interiorCompleted: boolean;
   
   // Actions
   setPhase: (phase: SpacePhase) => void;
@@ -22,6 +24,7 @@ interface SpaceEducationState {
   completeNBL: () => void;
   completeLaunch: () => void;
   completeDocking: () => void;
+  completeInterior: () => void;
   reset: () => void;
 }
 
@@ -33,6 +36,7 @@ export const useSpaceEducation = create<SpaceEducationState>()(
     nblCompleted: false,
     launchCompleted: false,
     dockingCompleted: false,
+    interiorCompleted: false,
     
     setPhase: (phase) => {
       set({ currentPhase: phase });
@@ -56,7 +60,11 @@ export const useSpaceEducation = create<SpaceEducationState>()(
     },
     
     completeDocking: () => {
-      set({ dockingCompleted: true, currentPhase: 'cupola_experience', progress: 100 });
+      set({ dockingCompleted: true, currentPhase: 'iss_interior', progress: 80 });
+    },
+    
+    completeInterior: () => {
+      set({ interiorCompleted: true, currentPhase: 'cupola_experience', progress: 100 });
     },
     
     reset: () => {
@@ -66,7 +74,8 @@ export const useSpaceEducation = create<SpaceEducationState>()(
         userChoice: null,
         nblCompleted: false,
         launchCompleted: false,
-        dockingCompleted: false
+        dockingCompleted: false,
+        interiorCompleted: false
       });
     }
   }))
