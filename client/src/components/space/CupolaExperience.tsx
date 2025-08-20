@@ -55,49 +55,35 @@ export function CupolaExperience() {
   }
 
   return (
-    <div className="relative w-full h-full bg-black">
-      {/* 3D Earth View from Cupola */}
-      <div className="absolute inset-0">
-        <Canvas camera={{ position: [0, 0, 8], fov: 60 }}>
-          <color attach="background" args={["#000011"]} />
-          
-          {viewMode === 'stars' && (
-            <Stars radius={300} depth={60} count={20000} factor={4} saturation={0} />
-          )}
-          
-          <ambientLight intensity={viewMode === 'sunrise' ? 0.8 : 0.3} />
-          <pointLight 
-            position={viewMode === 'sunrise' ? [10, 0, 5] : [5, 5, 5]} 
-            intensity={viewMode === 'sunrise' ? 2 : 1}
-            color={viewMode === 'sunrise' ? "#ffaa44" : "#ffffff"}
-          />
-          
-          <Suspense fallback={null}>
-            <Earth3D />
-            
-            {viewMode === 'sunrise' && (
-              <Text
-                position={[0, 3, 0]}
-                fontSize={0.5}
-                color="#ffaa44"
-                anchorX="center"
-                anchorY="middle"
-              >
-                Orbital Sunrise
-              </Text>
-            )}
-          </Suspense>
-          
-          <OrbitControls 
-            enableZoom={true} 
-            enablePan={false} 
-            minDistance={3}
-            maxDistance={15}
-            autoRotate={viewMode === 'earth'} 
-            autoRotateSpeed={0.5}
-          />
-        </Canvas>
-      </div>
+    <div className="relative w-full h-full bg-black" 
+         style={{
+           backgroundImage: 'url(/images/cupola_1755696592285.jpg)',
+           backgroundSize: 'cover',
+           backgroundPosition: 'center',
+           backgroundRepeat: 'no-repeat'
+         }}>
+      {/* View Mode Overlays for authentic ISS Cupola background */}
+      {viewMode === 'stars' && (
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-60">
+          <div className="absolute top-4 left-1/2 transform -translate-x-1/2 text-white text-xl font-semibold">
+            ✨ Deep Space View
+          </div>
+        </div>
+      )}
+      {viewMode === 'sunrise' && (
+        <div className="absolute inset-0 bg-gradient-to-r from-orange-500/30 via-yellow-400/20 to-transparent">
+          <div className="absolute top-4 left-1/2 transform -translate-x-1/2 text-yellow-200 text-xl font-semibold">
+            🌅 Orbital Sunrise
+          </div>
+        </div>
+      )}
+      {viewMode === 'earth' && (
+        <div className="absolute top-4 left-1/2 transform -translate-x-1/2 text-blue-200 text-xl font-semibold z-30">
+          🌍 ISS Cupola Observatory
+        </div>
+      )}
+      
+      {/* Authentic ISS Cupola View - Real photo from space */}
 
       {/* Cupola Frame Overlay */}
       <div className="absolute inset-0 pointer-events-none">
